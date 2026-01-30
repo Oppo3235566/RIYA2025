@@ -14,13 +14,25 @@ Assalamualaikum Everyone!
   <span> Develop By SHAHADAT SAHU</span>
 </p>
 
-![Forks](https://img.shields.io/github/forks/shahadat-sahu/SHAHADAT-CHAT-BOT?style=flat&color=blueviolet&cacheSeconds=60)
-![Stars](https://img.shields.io/github/stars/shahadat-sahu/SHAHADAT-CHAT-BOT?style=flat&color=gold&cacheSeconds=60)
-![Last Commit](https://img.shields.io/github/last-commit/shahadat-sahu/SHAHADAT-CHAT-BOT?style=flat&color=teal&cacheSeconds=60)
-![Repo Size](https://img.shields.io/github/repo-size/shahadat-sahu/SHAHADAT-CHAT-BOT?style=flat&color=forestgreen&cacheSeconds=60)
-![License](https://img.shields.io/github/license/shahadat-sahu/SHAHADAT-CHAT-BOT?style=flat&color=orange&cacheSeconds=60)
-![Node Version](https://img.shields.io/badge/Node-18+-lightgrey?style=flat&logo=node.js&color=brightgreen)
+<!-- ========== CLEAN PREMIUM BADGE SECTION ========== -->
 
+<div align="center">
+
+  <!-- ⭐ Fork -->
+  <img src="https://img.shields.io/github/forks/shahadat-sahu/SHAHADAT-CHAT-BOT?style=for-the-badge" alt="Forks">
+
+  <!-- ⭐ Stars -->
+  <img src="https://img.shields.io/github/stars/shahadat-sahu/SHAHADAT-CHAT-BOT?style=for-the-badge" alt="Stars">
+
+  <!-- ⭐ Fork Views (Custom Labeled Views) -->
+  <img src="https://komarev.com/ghpvc/?username=shahadat-sahu&label=Fork%20Views&color=blueviolet&style=for-the-badge" alt="Fork Views">
+
+  <!-- ⭐ Releases -->
+  <img src="https://img.shields.io/github/downloads/shahadat-sahu/SHAHADAT-CHAT-BOT/total?style=for-the-badge" alt="Releases">
+
+</div>
+
+<!-- ========== END CLEAN SECTION ========== -->
 _____
 
 ### <br>   ❖ DEPLOY_WORKFLOWS ❖
