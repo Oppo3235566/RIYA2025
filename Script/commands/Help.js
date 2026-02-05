@@ -6,7 +6,7 @@ module.exports.config = {
     name: "help",
     version: "2.0.0",
     hasPermssion: 0,
-    credits: "SHAHADAT SAHU",
+    credits: "𝐌𝐑 𝐌𝐎𝐍𝐈𝐑 𝐊𝐇𝐀𝐍",
     description: "Shows all commands with details",
     commandCategory: "system",
     usages: "[command name/page number]",
@@ -32,7 +32,7 @@ module.exports.languages = {
 ┣━━━━━━━━━━━━━━━━┫
 ┃ ⚙ Prefix: %8
 ┃ 🤖 Bot Name: %9
-┃ 👑 Owner: 𝐒𝐇𝐀𝐇𝐀𝐃𝐀𝐓 𝐒𝐀𝐇𝐔
+┃ 👑 Owner: 𝐌𝐑 𝐌𝐎𝐍𝐈𝐑 𝐊𝐇𝐀𝐍
 ╰━━━━━━━━━━━━━━━━╯`,
         "helpList": "[ There are %1 commands. Use: \"%2help commandName\" to view more. ]",
         "user": "User",
@@ -41,22 +41,27 @@ module.exports.languages = {
     }
 };
 
-// 🔹 এখানে আপনার ফটো Imgur লিংক করে বসাবেন ✅
+// https://i.imgur.com/jAZlebM.jpeg ✅
+
 const helpImages = [
-    "https://i.imgur.com/sxSn1K3.jpeg",
-    "https://i.imgur.com/8WvpgUL.jpeg",
-    "https://i.imgur.com/8WvpgUL.jpeg",
-    "https://i.imgur.com/sxSn1K3.jpeg"
+    "https://i.imgur.com/jAZlebM.jpeg",
+    "https://i.imgur.com/JpIkDad.jpeg",
+    "https://g",
+    "https://i.img"
 ];
 
-
 function downloadImages(callback) {
-    const randomUrl = helpImages[Math.floor(Math.random() * helpImages.length)];
-    const filePath = path.join(__dirname, "cache", "help_random.jpg");
+    let files = [];
+    let completed = 0;
 
-    request(randomUrl)
-        .pipe(fs.createWriteStream(filePath))
-        .on("close", () => callback([filePath]));
+    helpImages.forEach((url, i) => {  
+        let filePath = path.join(__dirname, "cache", `help${i}.jpg`);  
+        files.push(filePath);  
+        request(url).pipe(fs.createWriteStream(filePath)).on("close", () => {  
+            completed++;  
+            if (completed === helpImages.length) callback(files);  
+        });  
+    });
 }
 
 module.exports.handleEvent = function ({ api, event, getText }) {
@@ -80,7 +85,7 @@ module.exports.handleEvent = function ({ api, event, getText }) {
         command.config.commandCategory || "Unknown",  
         command.config.cooldowns || 0,  
         prefix,  
-        global.config.BOTNAME || "𝐒𝐡𝐚𝐡𝐚𝐝𝐚𝐭 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭"  
+        global.config.BOTNAME || "𝐊𝐎𝐁𝐈 𝐁𝐎𝐒𝐒 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭"  
     );  
 
     downloadImages(files => {  
@@ -110,7 +115,7 @@ module.exports.run = function ({ api, event, args, getText }) {
             command.config.commandCategory || "Unknown",  
             command.config.cooldowns || 0,  
             prefix,  
-            global.config.BOTNAME || "𝐒𝐡𝐚𝐡𝐚𝐝𝐚𝐭 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭"  
+            global.config.BOTNAME || "𝐊𝐎𝐁𝐈 𝐁𝐎𝐒𝐒 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭"  
         );  
 
         downloadImages(files => {  
@@ -143,8 +148,8 @@ module.exports.run = function ({ api, event, args, getText }) {
 ${msg}
 ┣━━━━━━━━━━━━━━━━┫
 ┃ ⚙ Prefix: ${prefix}
-┃ 🤖 Bot Name: ${global.config.BOTNAME || "𝐒𝐡𝐚𝐡𝐚𝐝𝐚𝐭 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭"}
-┃ 👑 Owner: 𝐒𝐇𝐀𝐇𝐀𝐃𝐀𝐓 𝐒𝐀𝐇𝐔
+┃ 🤖 Bot Name: ${global.config.BOTNAME || "𝐊𝐎𝐁𝐈 𝐁𝐎𝐒𝐒 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭"}
+┃ 👑 Owner: 𝐌𝐑 𝐌𝐎𝐍𝐈𝐑 𝐊𝐇𝐀𝐍
 ╰━━━━━━━━━━━━━━━━╯`;
 
     downloadImages(files => {  
