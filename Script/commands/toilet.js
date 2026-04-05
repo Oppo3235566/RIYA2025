@@ -1,3 +1,7 @@
+const axios = require("axios");
+const fs = require("fs-extra");
+const path = require("path");
+
 module.exports.config = {
   name: "toilet",
   version: "1.0.0",
@@ -9,10 +13,8 @@ module.exports.config = {
   cooldowns: 5
 };
 
-module.exports.run = async function ({ api, event, args, Currencies }) {
-  const axios = require("axios");
-  const fs = require("fs-extra");
-  const path = require("path");
+module.exports.run = async function ({ api, event, Currencies }) {
+  const { threadID, messageID } = event;
 
   try {
     const apiList = await axios.get(
@@ -21,19 +23,16 @@ module.exports.run = async function ({ api, event, args, Currencies }) {
 
     const AVATAR_CANVAS_API = apiList.data.AvatarCanvas;
 
-    const mentions = event.mentions;
-    const messageReply = event.messageReply;
-
-    let targetID = null;
-
-    if (mentions && Object.keys(mentions).length > 0) {
-      targetID = Object.keys(mentions)[0];
-    } else if (messageReply && messageReply.senderID) {
-      targetID = messageReply.senderID;
-    }
+    const targetID =
+      Object.keys(event.mentions || {})[0] ||
+      event.messageReply?.senderID;
 
     if (!targetID) {
-      return api.sendMessage("Please reply or mention someone......", event.threadID, event.messageID);
+      return api.sendMessage(
+        "Please reply or mention someone......",
+        threadID,
+        messageID
+      );
     }
 
     const senderID = event.senderID;
@@ -46,7 +45,8 @@ module.exports.run = async function ({ api, event, args, Currencies }) {
       `${AVATAR_CANVAS_API}/api`,
       {
         cmd: "toilet",
-        uid: targetID
+        senderID: senderID,
+        targetID: targetID
       },
       {
         responseType: "arraybuffer",
@@ -54,7 +54,7 @@ module.exports.run = async function ({ api, event, args, Currencies }) {
       }
     );
 
-    const imgPath = path.join(__dirname, "cache", `toilet_${targetID}.png`);
+    const imgPath = path.join(__dirname, "cache", `toilet_${Date.now()}.png`);
     fs.writeFileSync(imgPath, res.data);
 
     return api.sendMessage(
@@ -62,12 +62,16 @@ module.exports.run = async function ({ api, event, args, Currencies }) {
         body: "বেশি বাল পাকলামির জন্য তোরে টয়লেটে ফেলে দিলাম🤣🤮",
         attachment: fs.createReadStream(imgPath)
       },
-      event.threadID,
+      threadID,
       () => fs.unlinkSync(imgPath),
-      event.messageID
+      messageID
     );
 
   } catch (e) {
-    return api.sendMessage("API Error Call Boss SAHU", event.threadID, event.messageID);
+    return api.sendMessage(
+      "API Error Call Boss SAHU",
+      threadID,
+      messageID
+    );
   }
 };
